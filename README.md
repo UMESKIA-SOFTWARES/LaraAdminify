@@ -2,7 +2,7 @@
 
 ![LaraAdminify Banner](public/images/LaraAdminfy_banner.png)
 
-LaraAdminify is a Laravel package that allows you to generate an admin panel for your Laravel application. 
+LaraAdminify - simplify admin panel creation with dynamic features for plugins and themes. Effortlessly craft customizable dashboards for efficient development.
 
 ## Installation
 
