@@ -31,7 +31,7 @@
             <div class="card-body">
                 <form action="" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-download"></i> Update</button>
                 </form>
             </div>
         </div>
