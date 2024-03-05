@@ -22,7 +22,7 @@
                         <div class="latest-update-box">
                             <?php
                             //GET SYSTEM LOGS
-                            $logs = DB::table('system_logs')->orderBy('created_at', 'desc')->limit(5)->get();
+                            $logs = DB::table('system_logs')->orderBy('created_at', 'desc')->get();
                             foreach ($logs as $log) {
                                 //CREATE AN ALTER COLOR FOR THE LOGS AUTO GENERATED
                                 $colors = array("primary", "success", "danger", "warning", "info");

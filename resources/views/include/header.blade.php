@@ -51,6 +51,15 @@
         .pcoded .pcoded-navbar[navbar-theme=theme1] .pcoded-inner-navbar {
             background-color: #100159;
         }
+
+        .card-outline {
+            border-top: 5px solid #100159;
+        }
+
+        .btn-primary{
+            background-color: #100159;
+            border-color: #100159;
+        }
     </style>
 </head>
 
@@ -64,14 +73,16 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
-            <nav class="navbar header-navbar pcoded-header" >
+            <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="fa fa-bars"></i>
                         </a>
-                        <a href="" style="margin-left:10%; position: absolute; top: 50%; transform: translateY(-50%);">
-                            <img class="img-fluid" src="/images/LaraAdminfy_banner.png" alt="Theme-Logo" style="width: 150px; height: auto;">
+                        <a href=""
+                            style="margin-left:10%; position: absolute; top: 50%; transform: translateY(-50%);">
+                            <img class="img-fluid" src="/images/LaraAdminfy_banner.png" alt="Theme-Logo"
+                                style="width: 150px; height: auto;">
                         </a>
 
                         <a class="mobile-options waves-effect waves-light">
@@ -181,11 +192,13 @@
 
 
                                     <li class="active">
-                                        <a href="#" class="waves-effect waves-dark text-white"> <!-- Add text-white class here -->
+                                        <a href="#" class="waves-effect waves-dark text-white">
+                                            <!-- Add text-white class here -->
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-info"></i>
                                             </span>
-                                            <span class="pcoded-mtext">Version 1.0.0</span> <!-- Adjust the version number as needed -->
+                                            <span class="pcoded-mtext">Version 1.0.0</span>
+                                            <!-- Adjust the version number as needed -->
                                         </a>
                                     </li>
 

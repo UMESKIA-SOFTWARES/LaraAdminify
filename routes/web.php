@@ -64,6 +64,7 @@ Route::middleware('web', 'check.installation')->group(function () {
            //SETTINGS
            Route::prefix('/settings')->group(function () {
                 Route::get('/version', [UpdateController::class, 'showVersion'])->name('settings.showVersion');
+                Route::post('/update', [UpdateController::class, 'updateApp'])->name('settings.updateApp');
            });
 
 
