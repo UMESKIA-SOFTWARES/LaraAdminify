@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InstallerController;
+use App\Http\Controllers\AuthController;
+use App\Models\User;
+use App\Http\Controllers\UpdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +30,45 @@ Route::prefix('laradmin')->group(function () {
 
 Route::middleware('web', 'check.installation')->group(function () {
     Route::prefix('laradmin')->group(function () {
+        // AUTH SECTION
         Route::get('/', function () { return view('auth.login'); });
         Route::get('/login', function () { return view('auth.login'); });
+        Route::post('/auth/login', [AuthController::class, 'loginUser']);
+        Route::get('/auth/logout', [AuthController::class, 'logoutUser']);
+
+        // APP SECTION
+        Route::middleware(['auth.user'])->group(function () {
+           Route::get('/controlpanel', function () { return view('app.controlpanel'); });
+           Route::get('/logs', function () { return view('app.logs'); });
+
+           //ROLES
+           Route::prefix('/role')->group(function () {
+                Route::get('/add', function () { return view('auth.addrole'); });
+                Route::get('/list', [AuthController::class, 'showRoles'])->name('roles.showRoles');
+                Route::get('/edit/{id}', [AuthController::class, 'editRole'])->name('roles.editRole');
+                Route::get('/delete/{id}', [AuthController::class, 'deleteRole'])->name('roles.deleteRole');
+                Route::post('/roleadd', [AuthController::class, 'addRole']);
+                Route::post('/roleedit', [AuthController::class, 'editUserRole']);
+           });
+
+           //USERS
+           Route::prefix('/user')->group(function () {
+                Route::get('/add', [AuthController::class, 'addViewUser'])->name('users.addViewUser');
+                Route::get('/list', [AuthController::class, 'showUsers'])->name('users.showUsers');
+                Route::get('/edit/{id}', [AuthController::class, 'editUser'])->name('users.editUser');
+                Route::get('/delete/{id}', [AuthController::class, 'deleteUser'])->name('users.deleteUser');
+                Route::post('/useradd', [AuthController::class, 'addUser']);
+                Route::post('/useredit', [AuthController::class, 'editUserDetails']);
+           });
+
+           //SETTINGS
+           Route::prefix('/settings')->group(function () {
+                Route::get('/version', [UpdateController::class, 'showVersion'])->name('settings.showVersion');
+           });
+
+
+        });
+
     });
 
     Route::get('/' , function () { return "This website is managed by Laradminify"; });

@@ -83,7 +83,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    <form action="/auth/login" method="post" class="md-float-material form-material">
+                    <form action="/laradmin/auth/login" method="post" class="md-float-material form-material">
                         @csrf
                         <div class="auth-box card">
                             <div class="card-block">
@@ -102,9 +102,9 @@
                                     </div>
                                 @endif
                                 <div class="form-group form-primary">
-                                    <input type="text" name="username" class="form-control" required>
+                                    <input type="text" name="logindata" class="form-control" required>
                                     <span class="form-bar"></span>
-                                    <label class="float-label">Username</label>
+                                    <label class="float-label">Email / Username</label>
                                 </div>
                                 <div class="form-group form-primary">
                                     <input type="password" name="password" class="form-control" required>

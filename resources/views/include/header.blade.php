@@ -38,7 +38,20 @@
     <link rel="stylesheet" type="text/css"
         href="/dist/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
     <link rel="stylesheet" type="text/css" href="/dist/bower_components/multiselect/css/multi-select.css" />
-    <link rel="stylesheet" href="/dist/custom/main.css">
+    <style>
+        .header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6] {
+            background: #100159;
+        }
+
+        .header-navbar .navbar-wrapper .navbar-logo[logo-theme=theme6] {
+            background: #100159;
+        }
+
+        .pcoded .pcoded-navbar[navbar-theme=theme1] .nav-user,
+        .pcoded .pcoded-navbar[navbar-theme=theme1] .pcoded-inner-navbar {
+            background-color: #100159;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,20 +64,16 @@
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
-            <nav class="navbar header-navbar pcoded-header">
+            <nav class="navbar header-navbar pcoded-header" >
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
-                        <a href="/dashboard">
-
-                        </a>
-                        <a href="/dashboard">
-                            <div class="img-fluid text-center text-white text-bold">
-                                HRM SYSTEM
-                            </div>
-                        </a>
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="fa fa-bars"></i>
                         </a>
+                        <a href="" style="margin-left:10%; position: absolute; top: 50%; transform: translateY(-50%);">
+                            <img class="img-fluid" src="/images/LaraAdminfy_banner.png" alt="Theme-Logo" style="width: 150px; height: auto;">
+                        </a>
+
                         <a class="mobile-options waves-effect waves-light">
                             <i class="fa fa-sign-out-alt"></i>
                         </a>
@@ -86,39 +95,19 @@
                                             alt="User-Profile-Image">
                                         <span>
                                             <?php
+                                            use App\Models\User;
+                                            $user_id = session()->get('user_id');
+                                            $user = User::where('user_id', $user_id)->first();
                                             //GET USER NAME
-                                            echo 'Welcome,' . ' ';
-                                            //check if user is logged in
-                                            $email = session()->get('email');
-                                            echo $email;
+                                            echo 'Welcome,' . ' ' . $user->username;
                                             ?>
                                         </span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                        {{-- <li>
-                                            <a href="#!">
-                                                <i class="feather icon-settings"></i> Settings
-                                            </a>
-                                        </li>
                                         <li>
-                                            <a href="#">
-                                                <i class="feather icon-user"></i> Profile
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="email-inbox.html">
-                                                <i class="feather icon-mail"></i> My Messages
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="auth-lock-screen.html">
-                                                <i class="feather icon-lock"></i> Lock Screen
-                                            </a>
-                                        </li> --}}
-                                        <li>
-                                            <a href="/auth/logout">
+                                            <a href="/laradmin/auth/logout">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -139,25 +128,10 @@
                     <nav class="pcoded-navbar">
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
-                                <div class="pcoded-navigation-label">Navigation</div>
                                 <ul class="pcoded-item pcoded-left-item">
-
-                                    <li class="active pcoded-trigger">
-                                        <a href="/dashboard" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-home"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Dashboard</span>
-                                        </a>
-                                    </li>
                                     <?php
-                                    use App\Models\User;
                                     use App\Models\Menu;
-                                    $email = session()->get('email');
-                                    $userdata = User::where('email', $email)->first();
-                                    $role = $userdata->role;
                                     $commonMenuItems = Menu::getCommonMenuItems();
-                                    if ($role === 'admin') {
                                         foreach ($commonMenuItems as $menuItem) {
                                             if (!isset($menuItem['submenu'])) {
                                             ?>
@@ -192,19 +166,32 @@
                                     <?php
                                             }
                                         }
-                                    }
+
                                     ?>
 
 
                                     <li>
-                                        <a href="/auth/logout" class="waves-effect waves-dark">
+                                        <a href="/laradmin/auth/logout" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-log-out"></i>
                                             </span>
                                             <span class="pcoded-mtext">Logout</span>
                                         </a>
                                     </li>
+
+
+                                    <li class="active">
+                                        <a href="#" class="waves-effect waves-dark text-white"> <!-- Add text-white class here -->
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-info"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Version 1.0.0</span> <!-- Adjust the version number as needed -->
+                                        </a>
+                                    </li>
+
                                 </ul>
+
+
 
 
 

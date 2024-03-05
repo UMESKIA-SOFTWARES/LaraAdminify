@@ -64,19 +64,23 @@ class InstallerController extends Controller
 
     public function createTable($user_name, $user_email, $user_password)
     {
+        //GENRATE A USER ID
+        $user_id = uniqid();
         // Create the users table
         DB::statement('CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL,
+            user_id VARCHAR(255)  NULL,
+            username VARCHAR(255)  NULL,
+            email VARCHAR(255)  NULL,
+            password VARCHAR(255)  NULL,
             role_id varchar(500) DEFAULT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )');
         // Create the user
         DB::table('users')->insert([
-            'name' => $user_name,
+            'user_id' => $user_id,
+            'username' => $user_name,
             'email' => $user_email,
             'password' => Hash::make($user_password),
             'role_id' => '1', // Default role id for admin is '1
@@ -86,8 +90,8 @@ class InstallerController extends Controller
         // Create Table for user_roles
         DB::statement('CREATE TABLE user_roles (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            role_id INT NOT NULL,
+            user_id INT  NULL,
+            role_id INT  NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )');
@@ -95,8 +99,8 @@ class InstallerController extends Controller
         // Create Table for role_permissions
         DB::statement('CREATE TABLE role_permissions (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            role_id INT NOT NULL,
-            permission_id INT NOT NULL,
+            role_id INT  NULL,
+            permission_id INT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )');
@@ -104,9 +108,9 @@ class InstallerController extends Controller
         //carete system logs table
         DB::statement('CREATE TABLE system_logs (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            user_id INT NOT NULL,
-            action VARCHAR(255) NOT NULL,
-            description TEXT NOT NULL,
+            user_id VARCHAR(255)  NULL,
+            action VARCHAR(255)  NULL,
+            description TEXT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )');
