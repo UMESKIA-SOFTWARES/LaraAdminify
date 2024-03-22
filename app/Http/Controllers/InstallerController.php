@@ -14,6 +14,8 @@ class InstallerController extends Controller
         return view('install.welcome');
     }
 
+
+
     public function checkRequirements()
     {
         // Check PHP version requirement
